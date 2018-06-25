@@ -19,31 +19,28 @@ MovingObject.prototype.draw = function(ctx) {
   );
 
   ctx.fill();
+  ctx.closePath();
 };
 
 MovingObject.prototype.move = function(ctx) {
-  
-  setInterval(() => {    
-    ctx.clearRect(0, 0, 1000, 1000);
-    this.pos[0] += this.vel[0]/10;
-    this.pos[1] += this.vel[1]/10;
-    
-    if (this.pos[0] > 1000) {
-      this.pos[0] = 0;
-    }
-    if (this.pos[1] > 1000) {
-      this.pos[1] = 0;
-    }
-    if (this.pos[0] < 0) {
-      this.pos[0] = 1000;
-    }
-    if (this.pos[1] < 0) {
-      this.pos[0] = 1000;
-    }
-    
-    this.draw(ctx);
-  }, 10);
-  
+
+  this.pos[0] += this.vel[0]/10;
+  this.pos[1] += this.vel[1]/10;
+
+  if (this.pos[0] - this.radius > 1000) {
+    this.pos[0] = 0;
+  }
+  if (this.pos[1] - this.radius > 1000) {
+    this.pos[1] = 0;
+  }
+  if (this.pos[0] + this.radius < 0) {
+    this.pos[0] = 1000;
+  }
+  if (this.pos[1] + this.radius < 0) {
+    this.pos[1] = 1000;
+  }
+
+  this.draw(ctx);
 };
 
 module.exports = MovingObject;

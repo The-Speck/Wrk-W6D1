@@ -1,14 +1,18 @@
 const MovingObject = require("./moving_object.js");
+const Asteroid = require("./asteroid.js");
+const Game = require("./game.js");
+const GameView = require("./game_view.js");
 
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+canvas.height = 1000;
+canvas.width = 1000;
 
 
-window.MovingObject = MovingObject;
+// window.MovingObject = MovingObject;
 
-const a = new MovingObject( { pos: [30, 30], vel: [10, 10], radius: 5, color: "#00FF00"});
-a.draw(ctx);
-a.move(ctx);
+
+const g = new Game(canvas.width, canvas.height, 8);
+const gv = new GameView(g, ctx);
+gv.start();
